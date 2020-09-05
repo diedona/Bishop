@@ -19,21 +19,19 @@ namespace Bishop.WpfApp.Formularios
     /// </summary>
     public partial class frmMenu : Window
     {
-        private readonly ConfiguracaoSistema _ConfiguracoesSistema;
+        private ConfiguracaoSistema _ConfiguracoesSistema { get; set; }
 
         public frmMenu()
         {
             InitializeComponent();
             _ConfiguracoesSistema = new ConfiguracaoSistema();
+            stpDadosSistema.DataContext = _ConfiguracoesSistema;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _ConfiguracoesSistema.CriarConfigSeNaoExistir();
             _ConfiguracoesSistema.CarregarDadosPeloConfig();
-
-            if (!string.IsNullOrEmpty(_ConfiguracoesSistema.CaminhoRepositorio))
-                txtCaminhoRepositorio.Text = _ConfiguracoesSistema.CaminhoRepositorio;
         }
 
         private void btnBuscarRepositorio_Click(object sender, RoutedEventArgs e)
@@ -42,8 +40,8 @@ namespace Bishop.WpfApp.Formularios
             {
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    txtCaminhoRepositorio.Text = dialog.SelectedPath;
-                    AtualizarConfiguracoesSistema();
+                    _ConfiguracoesSistema.CaminhoRepositorio = dialog.SelectedPath;
+                    AtualizarConfig();
                 }
             }
         }
@@ -52,14 +50,13 @@ namespace Bishop.WpfApp.Formularios
         {
             if (System.Windows.MessageBox.Show("Apagar caminho", "Confirma?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                txtCaminhoRepositorio.Text = string.Empty;
-                AtualizarConfiguracoesSistema();
+                _ConfiguracoesSistema.CaminhoRepositorio = string.Empty;
+                AtualizarConfig();
             }
         }
 
-        private void AtualizarConfiguracoesSistema()
+        private void AtualizarConfig()
         {
-            _ConfiguracoesSistema.CaminhoRepositorio = txtCaminhoRepositorio.Text;
             _ConfiguracoesSistema.SalvarConfig();
         }
     }

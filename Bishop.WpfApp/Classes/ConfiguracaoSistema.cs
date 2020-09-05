@@ -1,17 +1,25 @@
-﻿using System;
+﻿using PropertyChanged;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Text.Json;
 
 namespace Bishop.WpfApp.Classes
 {
-    public class ConfiguracaoSistema
+    public class ConfiguracaoSistema : INotifyPropertyChanged
     {
+        [DoNotNotify]
         public string CaminhoBase => AppDomain.CurrentDomain.BaseDirectory;
-        public string CaminhoRepositorio { get; set; }
+        [DoNotNotify]
         public string CaminhoPastaConfiguracao => $"{CaminhoBase}Config";
+        [DoNotNotify]
         public string CaminhoArquivoConfiguracao => $"{CaminhoPastaConfiguracao}{Path.DirectorySeparatorChar}config.json";
+
+        public string CaminhoRepositorio { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void CriarConfigSeNaoExistir()
         {
