@@ -26,8 +26,10 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="0">
-            <materialDesign:Card Padding="10" Margin="0,0,5,0" VerticalAlignment="Stretch">
+            <materialDesign:Card Padding="10" Margin="0,0,0,0" VerticalAlignment="Stretch">
                 <StackPanel x:Name="stpDadosSistema" Orientation="Vertical">
+
+                    <!-- repo -->
                     <Label>Caminho do repositório alvo:</Label>
                     <DockPanel HorizontalAlignment="Stretch">
                         <TextBox x:Name="txtCaminhoRepositorio" 
@@ -36,7 +38,38 @@
                                  Width="225"></TextBox>
                         <Button x:Name="btnBuscarRepositorio" Click="btnBuscarRepositorio_Click" Content="{materialDesign:PackIcon Magnify}"></Button>
                     </DockPanel>
-                    <Button Margin="0,10" x:Name="btnEncontrarArquivos" IsEnabled="True">Buscar arquivos com conexão</Button>
+
+                    <materialDesign:Card Style="{StaticResource Card2}" Padding="5,5,5,10" Margin="2,15,0,5" VerticalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical">
+                            
+                            <!-- ip -->
+                            <DockPanel>
+                                <Label>IP do Banco:</Label>
+                                <Button HorizontalAlignment="Right" 
+                                        Content="{materialDesign:PackIcon ContentSave}"
+                                        x:Name="btnSalvarDadosConexao"
+                                        Click="btnSalvarDadosConexao_Click"
+                                        Width="50"></Button>
+                            </DockPanel>
+                            <TextBox x:Name="txtIpDoBanco" 
+                                     Text="{Binding IpDoBanco}"></TextBox>
+
+                            <!-- user -->
+                            <Label>Usuário:</Label>
+                            <TextBox x:Name="txtUsuario"
+                             Text="{Binding Usuario}"></TextBox>
+
+                            <!-- senha -->
+                            <Label>Senha:</Label>
+                            <TextBox x:Name="txtSenha"
+                             Text="{Binding Senha}"></TextBox>
+                            
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                    <Button x:Name="btnSalvarConfiguracao"
+                            Margin="0,10" 
+                            IsEnabled="True">Buscar arquivos com conexão</Button>
                 </StackPanel>
             </materialDesign:Card>
         </DockPanel>

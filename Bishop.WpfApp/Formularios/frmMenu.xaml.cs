@@ -55,6 +55,11 @@ namespace Bishop.WpfApp.Formularios
             }
         }
 
+        private void btnSalvarDadosConexao_Click(object sender, RoutedEventArgs e)
+        {
+            AtualizarConfig();
+        }
+
         private void AtualizarConfig()
         {
             _ConfiguracoesSistema.SalvarConfig();

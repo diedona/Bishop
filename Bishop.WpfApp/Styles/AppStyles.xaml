@@ -7,6 +7,10 @@
         <Setter Property="Background" Value="#222"></Setter>
     </Style>
 
+    <Style x:Key="Card2" TargetType="{x:Type materialDesign:Card}">
+        <Setter Property="Background" Value="#2d2d2d"></Setter>
+    </Style>
+
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
         <Setter Property="Margin" Value="0,0,10,2"></Setter>
         <Setter Property="Foreground" Value="#F0F0F0"></Setter>
@@ -15,7 +19,7 @@
     
     <Style TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#F0F0F0"></Setter>
-        <Setter Property="Margin" Value="0"></Setter>
+        <Setter Property="Margin" Value="0,5"></Setter>
         <Setter Property="Padding" Value="0"></Setter>
     </Style>
     <Style x:Key="TextBlockWhiteForeground" TargetType="{x:Type TextBlock}">

@@ -10,6 +10,8 @@ namespace Bishop.WpfApp.Classes
 {
     public class ConfiguracaoSistema : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [DoNotNotify]
         public string CaminhoBase => AppDomain.CurrentDomain.BaseDirectory;
         [DoNotNotify]
@@ -18,8 +20,9 @@ namespace Bishop.WpfApp.Classes
         public string CaminhoArquivoConfiguracao => $"{CaminhoPastaConfiguracao}{Path.DirectorySeparatorChar}config.json";
 
         public string CaminhoRepositorio { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public string IpDoBanco { get; set; }
+        public string Usuario { get; set; }
+        public string Senha { get; set; }
 
         public void CriarConfigSeNaoExistir()
         {
@@ -38,8 +41,11 @@ namespace Bishop.WpfApp.Classes
 
         public void CarregarDadosPeloConfig()
         {
-            ConfiguracaoSistema configuracaoSistemaArquivo = LerConfig();
-            CaminhoRepositorio = configuracaoSistemaArquivo.CaminhoRepositorio;
+            ConfiguracaoSistema configuracao = LerConfig();
+            CaminhoRepositorio = configuracao.CaminhoRepositorio;
+            IpDoBanco = configuracao.IpDoBanco;
+            Usuario = configuracao.Usuario;
+            Senha = configuracao.Senha;
         }
 
         private ConfiguracaoSistema LerConfig()
