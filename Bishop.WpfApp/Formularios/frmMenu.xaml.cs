@@ -48,6 +48,15 @@ namespace Bishop.WpfApp.Formularios
             }
         }
 
+        private void txtCaminhoRepositorio_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (System.Windows.MessageBox.Show("Apagar caminho", "Confirma?", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                txtCaminhoRepositorio.Text = string.Empty;
+                AtualizarConfiguracoesSistema();
+            }
+        }
+
         private void AtualizarConfiguracoesSistema()
         {
             _ConfiguracoesSistema.CaminhoRepositorio = txtCaminhoRepositorio.Text;

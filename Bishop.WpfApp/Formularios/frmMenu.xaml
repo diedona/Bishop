@@ -30,7 +30,7 @@
                 <StackPanel Orientation="Vertical">
                     <Label>Caminho do repositório alvo:</Label>
                     <DockPanel HorizontalAlignment="Stretch">
-                        <TextBox x:Name="txtCaminhoRepositorio" IsReadOnly="True" Width="225"></TextBox>
+                        <TextBox x:Name="txtCaminhoRepositorio" MouseDoubleClick="txtCaminhoRepositorio_MouseDoubleClick" IsReadOnly="True" Width="225"></TextBox>
                         <Button x:Name="btnBuscarRepositorio" Click="btnBuscarRepositorio_Click" Content="{materialDesign:PackIcon Magnify}"></Button>
                     </DockPanel>
                 </StackPanel>
