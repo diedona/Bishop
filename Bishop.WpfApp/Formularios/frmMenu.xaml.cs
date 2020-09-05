@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bishop.WpfApp.Classes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,21 @@ namespace Bishop.WpfApp.Formularios
     /// </summary>
     public partial class frmMenu : Window
     {
+        private readonly ConfiguracaoSistema _ConfiguracoesSistema;
+
         public frmMenu()
         {
             InitializeComponent();
+            _ConfiguracoesSistema = new ConfiguracaoSistema();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _ConfiguracoesSistema.CriarConfigSeNaoExistir();
+            _ConfiguracoesSistema.CarregarDadosPeloConfig();
+
+            if (!string.IsNullOrEmpty(_ConfiguracoesSistema.CaminhoRepositorio))
+                txtCaminhoRepositorio.Text = _ConfiguracoesSistema.CaminhoRepositorio;
         }
 
         private void btnBuscarRepositorio_Click(object sender, RoutedEventArgs e)
@@ -30,8 +43,15 @@ namespace Bishop.WpfApp.Formularios
                 if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     txtCaminhoRepositorio.Text = dialog.SelectedPath;
+                    AtualizarConfiguracoesSistema();
                 }
             }
+        }
+
+        private void AtualizarConfiguracoesSistema()
+        {
+            _ConfiguracoesSistema.CaminhoRepositorio = txtCaminhoRepositorio.Text;
+            _ConfiguracoesSistema.SalvarConfig();
         }
     }
 }
