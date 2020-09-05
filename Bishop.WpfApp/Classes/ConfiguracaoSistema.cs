@@ -1,4 +1,6 @@
-﻿using PropertyChanged;
+﻿using BIshop.Data.Enums;
+using BIshop.Data.Interfaces;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +10,7 @@ using System.Text.Json;
 
 namespace Bishop.WpfApp.Classes
 {
-    public class ConfiguracaoSistema : INotifyPropertyChanged
+    public class ConfiguracaoSistema : INotifyPropertyChanged, ICanConnectToDabase
     {
         private readonly string[] _NomesDeArquivos = { "appsettings.json", "connections.config" };
 
@@ -23,8 +25,10 @@ namespace Bishop.WpfApp.Classes
 
         public string CaminhoRepositorio { get; set; }
         public string IpDoBanco { get; set; }
+        public string NomeDoBanco { get; set; }
         public string Usuario { get; set; }
         public string Senha { get; set; }
+        public EDatabase TipoDeBase { get; set; } = EDatabase.SQLServer;
 
         public void CriarConfigSeNaoExistir()
         {
@@ -46,6 +50,7 @@ namespace Bishop.WpfApp.Classes
             ConfiguracaoSistema configuracao = LerConfig();
             CaminhoRepositorio = configuracao.CaminhoRepositorio;
             IpDoBanco = configuracao.IpDoBanco;
+            NomeDoBanco = configuracao.NomeDoBanco;
             Usuario = configuracao.Usuario;
             Senha = configuracao.Senha;
         }

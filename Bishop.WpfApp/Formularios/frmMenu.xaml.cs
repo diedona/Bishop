@@ -1,8 +1,12 @@
 ﻿using Bishop.WpfApp.Classes;
+using BIshop.Data.Conectores;
+using BIshop.Data.Factories;
+using BIshop.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -64,6 +68,16 @@ namespace Bishop.WpfApp.Formularios
         private void btnBuscarArquivos_Click(object sender, RoutedEventArgs e)
         {
             IEnumerable<string> jsonFiles = _ConfiguracoesSistema.CarregarCaminhosArquivosDeConexao();
+        }
+
+        private async void btnTestarConexao_Click(object sender, RoutedEventArgs e)
+        {
+            AbstractConnector connector = ConnectorFactory.CreateConnector(_ConfiguracoesSistema.TipoDeBase, _ConfiguracoesSistema);
+            (bool Success, string Message) resposta = await connector.TryConnection();
+            if(!resposta.Success)
+            {
+                System.Windows.MessageBox.Show(resposta.Message, "Ocorreu um erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void AtualizarConfig()

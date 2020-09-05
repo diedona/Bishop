@@ -19,7 +19,7 @@
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         Width="950" 
-        Height="450">
+        Height="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="305"></ColumnDefinition>
@@ -53,16 +53,26 @@
                             </DockPanel>
                             <TextBox x:Name="txtIpDoBanco" 
                                      Text="{Binding IpDoBanco}"></TextBox>
+                            
+                            <!-- nome do banco -->
+                            <Label>Nome do Banco:</Label>
+                            <TextBox x:Name="txtNomeDoBanco" 
+                                     Text="{Binding NomeDoBanco}"></TextBox>
 
                             <!-- user -->
                             <Label>Usuário:</Label>
-                            <TextBox x:Name="txtUsuario"
-                             Text="{Binding Usuario}"></TextBox>
+                            <TextBox x:Name="txtUsuario" 
+                                     Text="{Binding Usuario}"></TextBox>
 
                             <!-- senha -->
                             <Label>Senha:</Label>
-                            <TextBox x:Name="txtSenha"
-                             Text="{Binding Senha}"></TextBox>
+                            <TextBox x:Name="txtSenha" 
+                                     Text="{Binding Senha}"></TextBox>
+                            
+                            <!-- testar conexão -->
+                            <Button x:Name="btnTestarConexao"
+                                    Click="btnTestarConexao_Click"
+                                    Margin="0,15,0,0">Testar Conexão</Button>
                             
                         </StackPanel>
                     </materialDesign:Card>
