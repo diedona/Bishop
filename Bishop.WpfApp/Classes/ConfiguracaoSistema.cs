@@ -10,6 +10,8 @@ namespace Bishop.WpfApp.Classes
 {
     public class ConfiguracaoSistema : INotifyPropertyChanged
     {
+        private readonly string[] _NomesDeArquivos = { "appsettings.json", "connections.config" };
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [DoNotNotify]
@@ -46,6 +48,16 @@ namespace Bishop.WpfApp.Classes
             IpDoBanco = configuracao.IpDoBanco;
             Usuario = configuracao.Usuario;
             Senha = configuracao.Senha;
+        }
+
+        public IEnumerable<string> CarregarCaminhosArquivosDeConexao()
+        {
+            List<string> caminhos = new List<string>();
+            foreach (string arquivo in _NomesDeArquivos)
+            {
+                caminhos.AddRange(Directory.GetFiles(CaminhoRepositorio, arquivo, SearchOption.AllDirectories));
+            }
+            return caminhos;
         }
 
         private ConfiguracaoSistema LerConfig()

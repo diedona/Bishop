@@ -1,6 +1,7 @@
 ﻿using Bishop.WpfApp.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,6 +59,11 @@ namespace Bishop.WpfApp.Formularios
         private void btnSalvarDadosConexao_Click(object sender, RoutedEventArgs e)
         {
             AtualizarConfig();
+        }
+
+        private void btnBuscarArquivos_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<string> jsonFiles = _ConfiguracoesSistema.CarregarCaminhosArquivosDeConexao();
         }
 
         private void AtualizarConfig()

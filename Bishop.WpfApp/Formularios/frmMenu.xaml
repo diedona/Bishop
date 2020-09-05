@@ -67,8 +67,9 @@
                         </StackPanel>
                     </materialDesign:Card>
 
-                    <Button x:Name="btnSalvarConfiguracao"
+                    <Button x:Name="btnBuscarArquivos"
                             Margin="0,10" 
+                            Click="btnBuscarArquivos_Click"
                             IsEnabled="True">Buscar arquivos com conexão</Button>
                 </StackPanel>
             </materialDesign:Card>
