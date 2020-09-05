@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BIshop.Data.Conectores
@@ -16,13 +17,21 @@ namespace BIshop.Data.Conectores
         {
             try
             {
+                CancellationTokenSource source = new CancellationTokenSource();
+                CancellationToken token = source.Token;
+                source.CancelAfter(3000);
+
                 using (SqlConnection connection = new SqlConnection(GetConnectionString()))
                 {
-                    await connection.OpenAsync();
+                    await connection.OpenAsync(token);
                     connection.Close();
                 }
 
                 return (true, string.Empty);
+            }
+            catch (OperationCanceledException ocEx)
+            {
+                return (false, "Servidor demorou muito para responder.");
             }
             catch (Exception ex)
             {
@@ -32,7 +41,7 @@ namespace BIshop.Data.Conectores
 
         protected override string GetConnectionString()
         {
-            return $"Server={_Ip};Database={_Database};User Id={_Username};Password={_Password};Connection Timeout=5";
+            return $"Server={_Ip};Database={_Database};User Id={_Username};Password={_Password};";
         }
     }
 }
