@@ -39,7 +39,7 @@
                         <Button x:Name="btnBuscarRepositorio" Click="btnBuscarRepositorio_Click" Content="{materialDesign:PackIcon Magnify}"></Button>
                     </DockPanel>
 
-                    <materialDesign:Card Style="{StaticResource Card2}" Padding="5,5,5,10" Margin="2,15,0,5" VerticalAlignment="Stretch">
+                    <materialDesign:Card Style="{StaticResource Card2}" Padding="5,5,5,10" Margin="5,15,5,5" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
                             
                             <!-- ip -->
