@@ -29,8 +29,8 @@
                 <StackPanel Orientation="Vertical">
                     <Label>Caminho do repositório alvo:</Label>
                     <DockPanel HorizontalAlignment="Stretch">
-                        <TextBox Width="225"></TextBox>
-                        <Button>F</Button>
+                        <TextBox x:Name="txtCaminhoRepositorio" Width="225"></TextBox>
+                        <Button x:Name="btnBuscarRepositorio" Click="btnBuscarRepositorio_Click" Content="{materialDesign:PackIcon Magnify}"></Button>
                     </DockPanel>
                 </StackPanel>
             </materialDesign:Card>
