@@ -35,6 +35,7 @@ namespace Bishop.WpfApp.Formularios
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            EsconderAguarde(progressTestarConexao);
             _ConfiguracoesSistema.CriarConfigSeNaoExistir();
             _ConfiguracoesSistema.CarregarDadosPeloConfig();
         }
@@ -73,11 +74,23 @@ namespace Bishop.WpfApp.Formularios
         private async void btnTestarConexao_Click(object sender, RoutedEventArgs e)
         {
             AbstractConnector connector = ConnectorFactory.CreateConnector(_ConfiguracoesSistema.TipoDeBase, _ConfiguracoesSistema);
+            MostrarAguarde(progressTestarConexao);
             (bool Success, string Message) resposta = await connector.TryConnection();
-            if(!resposta.Success)
+            EsconderAguarde(progressTestarConexao);
+            if (!resposta.Success)
             {
                 System.Windows.MessageBox.Show(resposta.Message, "Ocorreu um erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void EsconderAguarde(System.Windows.Controls.ProgressBar progressBar)
+        {
+            progressBar.Visibility = Visibility.Collapsed;
+        }
+
+        private void MostrarAguarde(System.Windows.Controls.ProgressBar progressBar)
+        {
+            progressBar.Visibility = Visibility.Visible;
         }
 
         private void AtualizarConfig()

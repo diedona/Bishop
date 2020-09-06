@@ -41,7 +41,7 @@
 
                     <materialDesign:Card Style="{StaticResource Card2}" Padding="5,5,5,10" Margin="5,15,5,5" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Vertical">
-                            
+
                             <!-- ip -->
                             <DockPanel>
                                 <Label>IP do Banco:</Label>
@@ -53,7 +53,7 @@
                             </DockPanel>
                             <TextBox x:Name="txtIpDoBanco" 
                                      Text="{Binding IpDoBanco}"></TextBox>
-                            
+
                             <!-- nome do banco -->
                             <Label>Nome do Banco:</Label>
                             <TextBox x:Name="txtNomeDoBanco" 
@@ -68,12 +68,17 @@
                             <Label>Senha:</Label>
                             <TextBox x:Name="txtSenha" 
                                      Text="{Binding Senha}"></TextBox>
-                            
+
                             <!-- testar conexão -->
                             <Button x:Name="btnTestarConexao"
                                     Click="btnTestarConexao_Click"
                                     Margin="0,15,0,0">Testar Conexão</Button>
-                            
+
+                            <ProgressBar x:Name="progressTestarConexao" 
+                                         IsIndeterminate="True"
+                                         Style="{DynamicResource MaterialDesignCircularProgressBar}" 
+                                         Value="50"></ProgressBar>
+
                         </StackPanel>
                     </materialDesign:Card>
 
