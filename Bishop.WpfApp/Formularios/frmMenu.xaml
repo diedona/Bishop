@@ -76,6 +76,7 @@
 
                             <ProgressBar x:Name="progressTestarConexao" 
                                          IsIndeterminate="True"
+                                         Margin="0,10,0,0"
                                          Style="{DynamicResource MaterialDesignCircularProgressBar}" 
                                          Value="50"></ProgressBar>
 
