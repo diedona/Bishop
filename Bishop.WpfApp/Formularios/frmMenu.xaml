@@ -27,6 +27,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Column="0">
             <materialDesign:Card Padding="10" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                
                 <StackPanel x:Name="stpDadosSistema" Orientation="Vertical">
 
                     <!-- repo -->
@@ -88,6 +89,7 @@
                             Click="btnBuscarArquivos_Click"
                             IsEnabled="True">Buscar arquivos com conexão</Button>
                 </StackPanel>
+                
             </materialDesign:Card>
         </DockPanel>
     </Grid>

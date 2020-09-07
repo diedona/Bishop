@@ -75,10 +75,19 @@ namespace Bishop.WpfApp.Formularios
         {
             AbstractConnector connector = ConnectorFactory.CreateConnector(_ConfiguracoesSistema.TipoDeBase, _ConfiguracoesSistema);
             MostrarAguarde(progressTestarConexao);
-            btnTestarConexao.IsEnabled = false;
-            (bool Success, string Message) resposta = await connector.TryConnection();
-            EsconderAguarde(progressTestarConexao);
-            btnTestarConexao.IsEnabled = true;
+            btnTestarConexao.Visibility = Visibility.Collapsed;
+            (bool Success, string Message) resposta;
+
+            try
+            {
+                resposta = await connector.TryConnection();
+            }
+            finally
+            {
+                EsconderAguarde(progressTestarConexao);
+                btnTestarConexao.Visibility = Visibility.Visible;
+            }
+            
             if (!resposta.Success)
             {
                 System.Windows.MessageBox.Show(resposta.Message, "Ocorreu um erro", MessageBoxButton.OK, MessageBoxImage.Error);
